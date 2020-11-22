@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  discord-bot:
+    image: xxx.dkr.ecr.eu-central-1.amazonaws.com/atomy/discord-bot_cryptocoin
+    environment:
+      - DISCORD_API_KEY=yyy
+      - COIN_NAME=bitcoin
+    volumes:
+      - ./bot.js:/app/bot.js

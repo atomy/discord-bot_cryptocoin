@@ -60,3 +60,5 @@ typings/
 .env
 
 package-lock.json
+vars.sh
+docker-compose.yml
