@@ -52,7 +52,7 @@ pipeline {
                 sshagent(credentials : ['deploy-key-docker02']) {
                     sh './scripts/deploy.sh'
                 }
-                sh './scripts/deploy.sh'
+                sh './scripts/notification.sh'
                 echo 'Deploying....DONE'
             }
         }
