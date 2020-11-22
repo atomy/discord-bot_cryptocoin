@@ -18,7 +18,7 @@ VNUM3=$((VNUM3+1))
 # create new tag
 NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
 
-if [ -z "$NEEDS_TAG" ]; then
+if [ -z "$NEW_TAG" ]; then
   echo "[auto-tag] Unable to find old tag! Aborting!"
   exit 1
 fi
