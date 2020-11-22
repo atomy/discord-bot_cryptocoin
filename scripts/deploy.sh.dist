@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -x
 
 scp ~/.docker/config.json app@1.1.1.1:~/.docker/config.json
 scp docker-compose-bitcoin.yml app@1.1.1.1:/home/app/apps/stuff.prod.google.com/
