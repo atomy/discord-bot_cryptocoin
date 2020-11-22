@@ -11,7 +11,8 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([string(credentialsId: 'ecr-prefix', variable: 'ECR_PREFIX'),
-                    string(credentialsId: 'discord-webhook-release-url', variable: 'DISCORD_WEBHOOK_URL')]) {
+                    string(credentialsId: 'discord-webhook-release-url', variable: 'DISCORD_WEBHOOK_URL'),
+                    string(credentialsId: 'cryptocoin-discord-bot-key', variable: 'DISCORD_API_KEY')]) {
                         echo 'Configuring...'
                         sh './scripts/configure.sh'
                         echo 'Configuring...DONE'

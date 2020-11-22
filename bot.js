@@ -1,4 +1,4 @@
-const request = require('request');
+const fetch = require('node-fetch');
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
@@ -20,31 +20,38 @@ const coinName = process.env.COIN_NAME;
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity('? USD', { type: 'WATCHING' } );
-    request(options, callback);
+    fetch(options.url)
+        .then(callback);
 });
 
 const options = {
     url: 'https://api.coingecko.com/api/v3/simple/price?ids=' + coinName + '&vs_currencies=usd'
 };
 
-function callback(error, response, body) {
-    console.log("Got response with http-code: " + response.statusCode);
+function callback(res) {
+    console.log("Got response with http-code: " + res.status + " - " + res.statusText);
 
-    if (!error && response.statusCode === 200) {
-        console.log("response: " + body);
-        const jsonObject = JSON.parse(body);
-        const coinObject = jsonObject[Object.keys(jsonObject)[0]];
-        var coinValue = coinObject[Object.keys(coinObject)[0]];
-        console.log("retrieved btc value is: " + coinValue);
-        client.user.setActivity(btcValue + ' USD', { type: 'WATCHING' } );
+    if (res.ok) {
+        const body = res.body;
+        res.json().then(function onData(jsonObject) {
+            const coinObject = jsonObject[Object.keys(jsonObject)[0]];
+            var coinValue = coinObject[Object.keys(coinObject)[0]];
+
+            coinValue = Math.round(coinValue);
+
+            console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue);
+            client.user.setActivity(coinValue + ' USD', { type: 'WATCHING' } );
+        });
     } else {
         client.user.setActivity('? players playing', { type: 'WATCHING' } );
     }
 }
 
 setInterval(function() {
-    console.log("Requesting...");
-    request(options, callback);
+    console.log("Requesting... " + options.url);
+    fetch(options.url)
+        .then(callback);
 }, 1000*300);
 
+console.log("Logging in with: " + discordApiKey);
 client.login(discordApiKey);

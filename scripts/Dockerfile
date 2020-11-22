@@ -1,6 +1,6 @@
 FROM node:9.5
 
-COPY .. /app
+COPY . /app
 
 RUN cd /app && npm install
 

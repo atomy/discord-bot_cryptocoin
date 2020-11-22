@@ -8,9 +8,9 @@
   "author": "Marcel Lamm <atomy@jackinpoint.net>",
   "license": "MIT",
   "dependencies": {
-    "console-stamp": "^0.2.7",
+    "console-stamp": "^0.2.9",
     "console-timestamp": "^0.3.0",
-    "discord.js": "~11.5.1",
-    "request": "^2.88.0"
+    "discord.js": "^11.5.1",
+    "node-fetch": "2.6.1"
   }
 }
