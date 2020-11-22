@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 #get highest tag number
 VERSION=`git describe --abbrev=0 --tags`
 
@@ -14,6 +16,11 @@ VNUM3=$((VNUM3+1))
 
 # create new tag
 NEW_TAG="$VNUM1.$VNUM2.$VNUM3"
+
+if [ -z "$NEEDS_TAG" ]; then
+  echo "[auto-tag] Unable to find old tag! Aborting!"
+  exit 1
+fi
 
 echo "[auto-tag] Increasing \"$VERSION\" to \"$NEW_TAG\""
 
