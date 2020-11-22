@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+scp ~/.docker/config.json app@1.1.1.1:~/.docker/config.json
+ssh app@1.1.1.1 "cd /home/app/apps/atomy/discord-bot_cryptocoin && docker-compose -f docker-compose-bitcoin.yml pull && docker-compose -f docker-compose-bitcoin.yml up -d"
