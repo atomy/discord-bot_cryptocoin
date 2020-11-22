@@ -52,6 +52,7 @@ pipeline {
                 sshagent(credentials : ['deploy-key-docker02']) {
                     sh './scripts/deploy.sh'
                 }
+                sh './scripts/deploy.sh'
                 echo 'Deploying....DONE'
             }
         }
