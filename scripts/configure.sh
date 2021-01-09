@@ -36,7 +36,7 @@ cp docker-compose-bitcoin.yml.dist docker-compose-bitcoin.yml
 sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" docker-compose-bitcoin.yml
 sed -i "s|yyy|${DISCORD_BITCOIN_API_KEY}|" docker-compose-bitcoin.yml
 
-cp docker-compose-bitcoin.yml.dist docker-compose-ethereum.yml
+cp docker-compose-ethereum.yml.dist docker-compose-ethereum.yml
 sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" docker-compose-ethereum.yml
 sed -i "s|nnn|${DISCORD_ETHEREUM_API_KEY}|" docker-compose-ethereum.yml
 
