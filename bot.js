@@ -4,13 +4,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 require('console-stamp')(console, 'HH:MM:ss.l');
 
-if (!process.env.DISCORD_BITCOIN_API_KEY || process.env.DISCORD_BITCOIN_API_KEY.length <= 0) {
-    console.log('ERROR: Env variable DISCORD_BITCOIN_API_KEY does not exists or is empty!');
-    process.exit(1);
-}
-
-if (!process.env.DISCORD_ETHEREUM_API_KEY || process.env.DISCORD_ETHEREUM_API_KEY.length <= 0) {
-    console.log('ERROR: Env variable DISCORD_ETHEREUM_API_KEY does not exists or is empty!');
+if (!process.env.DISCORD_API_KEY || process.env.DISCORD_API_KEY.length <= 0) {
+    console.log('ERROR: Env variable DISCORD_API_KEY does not exists or is empty!');
     process.exit(1);
 }
 
