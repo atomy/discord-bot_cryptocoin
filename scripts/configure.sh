@@ -35,8 +35,8 @@ rm -f docker-compose.yml
 cp docker-compose.yml.dist docker-compose.yml
 sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" docker-compose.yml
 sed -i "s|discord-btc|${DISCORD_BITCOIN_API_KEY}|" docker-compose.yml
-sed -i "s|discord-eth|${DISCORD_ETHEREUM_API_KEY}|" docker-compose.yml
 sed -i "s|discord-ethbtc|${DISCORD_ETHBTC_API_KEY}|" docker-compose.yml
+sed -i "s|discord-eth|${DISCORD_ETHEREUM_API_KEY}|" docker-compose.yml
 
 cp scripts/build.sh.dist scripts/build.sh
 sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" scripts/build.sh
