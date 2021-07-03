@@ -43,10 +43,20 @@ function callback(res) {
             const coinObject = jsonObject[Object.keys(jsonObject)[0]];
             var coinValue = coinObject[Object.keys(coinObject)[0]];
 
-            coinValue = Math.round(coinValue);
+            // round the bigger values, no one cares about .xxx there
+            if (coinValue > 10) {
+                coinValue = Math.round(coinValue);
+            } else {
+                coinValue = Math.round(coinValue * 100) / 100
+            }
 
             console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue);
-            client.user.setActivity(coinValue + ' USD', { type: 'WATCHING' } );
+
+            if (displayCurrency === "btc") {
+                client.user.setActivity(coinValue + ' ' + displayCurrency + ' LIQ@0.052', { type: 'WATCHING' } );
+            } else {
+                client.user.setActivity(coinValue + ' ' + displayCurrency, { type: 'WATCHING' } );
+            }
         });
     } else {
         client.user.setActivity('? players playing', { type: 'WATCHING' } );
