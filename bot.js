@@ -46,7 +46,7 @@ function callback(res) {
             if (coinValue > 10) {
                 coinValue = Math.round(coinValue);
             } else {
-                coinValue = Math.round(coinValue * 100) / 100
+                coinValue = Math.round(coinValue * 1000) / 1000
             }
 
             console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue);
