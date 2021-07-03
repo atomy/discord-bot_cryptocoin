@@ -14,8 +14,14 @@ if (!process.env.COIN_NAME || process.env.COIN_NAME.length <= 0) {
     process.exit(1);
 }
 
+if (!process.env.DISPLAY_CURRENCY || process.env.DISPLAY_CURRENCY.length <= 0) {
+    console.log('ERROR: Env variable DISPLAY_CURRENCY does not exists or is empty!');
+    process.exit(1);
+}
+
 const discordApiKey = process.env.DISCORD_API_KEY;
 const coinName = process.env.COIN_NAME;
+const displayCurrency = process.env.DISPLAY_CURRENCY;
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -25,7 +31,7 @@ client.on('ready', () => {
 });
 
 const options = {
-    url: 'https://api.coingecko.com/api/v3/simple/price?ids=' + coinName + '&vs_currencies=usd'
+    url: 'https://api.coingecko.com/api/v3/simple/price?ids=' + coinName + '&vs_currencies=' + displayCurrency
 };
 
 function callback(res) {

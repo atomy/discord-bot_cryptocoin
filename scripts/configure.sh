@@ -40,6 +40,10 @@ cp docker-compose-ethereum.yml.dist docker-compose-ethereum.yml
 sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" docker-compose-ethereum.yml
 sed -i "s|nnn|${DISCORD_ETHEREUM_API_KEY}|" docker-compose-ethereum.yml
 
+cp docker-compose-ethbtc.yml.dist docker-compose-ethbtc.yml
+sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" docker-compose-ethbtc.yml
+sed -i "s|nnn|${DISCORD_ETHBTC_API_KEY}|" docker-compose-ethbtc.yml
+
 cp scripts/build.sh.dist scripts/build.sh
 sed -i "s|xxx.dkr.ecr.eu-central-1.amazonaws.com|${ECR_PREFIX}|" scripts/build.sh
 

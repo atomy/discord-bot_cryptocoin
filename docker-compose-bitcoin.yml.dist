@@ -6,3 +6,4 @@ services:
     environment:
       - DISCORD_API_KEY=yyy
       - COIN_NAME=bitcoin
+      - DISPLAY_CURRENCY=usd
