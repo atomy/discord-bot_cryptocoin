@@ -21,7 +21,7 @@ if (!process.env.DISPLAY_CURRENCY || process.env.DISPLAY_CURRENCY.length <= 0) {
 
 const discordApiKey = process.env.DISCORD_API_KEY;
 const coinName = process.env.COIN_NAME;
-const displayCurrency = process.env.DISPLAY_CURRENCY;
+const displayCurrency = process.env.DISPLAY_CURRENCY.toUpperCase();
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -38,7 +38,6 @@ function callback(res) {
     console.log("Got response with http-code: " + res.status + " - " + res.statusText);
 
     if (res.ok) {
-        const body = res.body;
         res.json().then(function onData(jsonObject) {
             const coinObject = jsonObject[Object.keys(jsonObject)[0]];
             var coinValue = coinObject[Object.keys(coinObject)[0]];
@@ -52,8 +51,8 @@ function callback(res) {
 
             console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue);
 
-            if (displayCurrency === "btc") {
-                client.user.setActivity(coinValue + ' ' + displayCurrency + ' LIQ@0.052', { type: 'WATCHING' } );
+            if (displayCurrency === "BTC") {
+                client.user.setActivity(coinValue + ' ' + displayCurrency + ' | LIQ@0.052', { type: 'WATCHING' } );
             } else {
                 client.user.setActivity(coinValue + ' ' + displayCurrency, { type: 'WATCHING' } );
             }
