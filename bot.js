@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Events, ActivityType } = require('discord.js');
+const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 const discordClient = new Client({ intents: [
         GatewayIntentBits.Guilds,
     ]
@@ -58,9 +58,11 @@ function callback(res) {
                 coinValue = Math.round(coinValue * 1000) / 1000
             }
 
-            console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue);
+            let formattedValue = coinValue.toLocaleString('de-DE');
+
+            console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue + ' (' + formattedValue + ')');
             discordClientRef.user.setPresence({
-                activities: [{ name: coinValue + ' ' + displayCurrency, type: ActivityType.Watching }],
+                activities: [{ name: formattedValue + ' ' + displayCurrency, type: ActivityType.Watching }],
                 status: 'online'
             });
         });
