@@ -1,7 +1,9 @@
-const fetch = require('node-fetch');
-const Discord = require('discord.js');
+const { Client, GatewayIntentBits, Events, ActivityType } = require('discord.js');
+const discordClient = new Client({ intents: [
+        GatewayIntentBits.Guilds,
+    ]
+});
 
-const client = new Discord.Client();
 require('console-stamp')(console, 'HH:MM:ss.l');
 
 if (!process.env.DISCORD_API_KEY || process.env.DISCORD_API_KEY.length <= 0) {
@@ -23,9 +25,16 @@ const discordApiKey = process.env.DISCORD_API_KEY;
 const coinName = process.env.COIN_NAME;
 const displayCurrency = process.env.DISPLAY_CURRENCY.toUpperCase();
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity('? USD', { type: 'WATCHING' } );
+discordClientRef = discordClient;
+discordClientRef.login(discordApiKey)
+
+discordClientRef.on('ready', () => {
+    console.log(`Logged in as ${discordClientRef.user.tag}!`);
+    discordClientRef.user.setPresence({
+        activities: [{ name: '? USD', type: ActivityType.Watching }],
+        status: 'online'
+    });
+
     fetch(options.url)
         .then(callback);
 });
@@ -50,15 +59,16 @@ function callback(res) {
             }
 
             console.log("[" + coinName + "]" + " retrieved coin-value is: " + coinValue);
-
-            if (displayCurrency === "BTC") {
-                client.user.setActivity(coinValue + ' ' + displayCurrency + ' | LIQ@0.052', { type: 'WATCHING' } );
-            } else {
-                client.user.setActivity(coinValue + ' ' + displayCurrency, { type: 'WATCHING' } );
-            }
+            discordClientRef.user.setPresence({
+                activities: [{ name: coinValue + ' ' + displayCurrency, type: ActivityType.Watching }],
+                status: 'online'
+            });
         });
     } else {
-        client.user.setActivity('? players playing', { type: 'WATCHING' } );
+        discordClientRef.user.setPresence({
+            activities: [{ name: 'ERR', type: ActivityType.Watching }],
+            status: 'online'
+        });
     }
 }
 
@@ -68,5 +78,5 @@ setInterval(function() {
         .then(callback);
 }, 1000*300);
 
-console.log("Logging in with: " + discordApiKey);
-client.login(discordApiKey);
+console.log("Logging into discord...");
+discordClientRef.login(discordApiKey);
