@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'coco'
+        label 'trickster'
     }
 
     environment {
@@ -14,7 +14,6 @@ pipeline {
                     string(credentialsId: 'discord-webhook-release-url', variable: 'DISCORD_WEBHOOK_URL'),
                     string(credentialsId: 'cryptocoin-discord-bitcoin-bot-key', variable: 'DISCORD_BITCOIN_API_KEY'),
                     string(credentialsId: 'cryptocoin-discord-ethereum-bot-key', variable: 'DISCORD_ETHEREUM_API_KEY'),
-                    string(credentialsId: 'cryptocoin-discord-ethbtc-bot-key', variable: 'DISCORD_ETHBTC_API_KEY'),
                     string(credentialsId: 'cryptocoin-discord-bot-deploy-host', variable: 'DEPLOY_HOST'),
                     string(credentialsId: 'cryptocoin-discord-bot-deploy-login', variable: 'DEPLOY_LOGIN'),]) {
                         echo 'Configuring...'
